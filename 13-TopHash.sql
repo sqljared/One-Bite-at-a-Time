@@ -7,7 +7,6 @@ SELECT TOP 100
 	sol.PickedQuantity,
 	sol.LastEditedWhen
 FROM Sales.Orders so
---INNER HASH 
 JOIN Sales.OrderLines sol 
 	ON so.OrderID = sol.OrderID
 WHERE 

@@ -12,9 +12,13 @@ BEGIN TRANSACTION;
 
 --620528 rows
 DELETE TOP (@BatchSize) vt
-FROM Warehouse.VehicleTemperatures vt
+FROM Warehouse.VehicleTemperatures vt --WITH(INDEX(IX_VehicleTemperatures_RecordedWhen))
 WHERE
 	vt.RecordedWhen < DATEADD(DAY, -180, GETUTCDATE());
 
 ROLLBACK TRANSACTION;
 GO
+
+--UPDATE STATISTICS Warehouse.VehicleTemperatures
+--	WITH FULLSCAN, ALL;
+--GO

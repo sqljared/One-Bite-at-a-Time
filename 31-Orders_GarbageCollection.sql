@@ -2,7 +2,8 @@ USE WideWorldImporters
 GO
 CREATE OR ALTER PROCEDURE Sales.Orders_GarbageCollection(
 @BatchSize INT = 100,
-@Duration INT = 30
+@Duration INT = 30,
+@RetentionMonths INT = 50
 )AS
 SET NOCOUNT ON;
 
@@ -42,7 +43,7 @@ SET NOCOUNT ON;
 		FROM Sales.Orders so
 		WHERE
 			so.OrderDate < 
-				DATEADD(month, -50, GETUTCDATE());
+				DATEADD(month, -@RetentionMonths, GETUTCDATE());
 
 		DELETE sol
 		FROM #OrdersGC gc
@@ -95,7 +96,8 @@ BEGIN TRANSACTION
 
 EXEC Sales.Orders_GarbageCollection
 	@BatchSize = 100,
-	@Duration = 5;
+	@Duration = 5,
+	@RetentionMonths = 50;
 
 ROLLBACK TRANSACTION
 GO

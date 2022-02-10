@@ -32,5 +32,5 @@ END;
 	--	inv.LastEditedWhen < DATEADD(DAY, -90, GETUTCDATE())
 	--	AND inv.DeliveryInstructions IS NOT NULL;
 
---ROLLBACK TRANSACTION;
+ROLLBACK TRANSACTION;
 GO
