@@ -16,7 +16,3 @@ BEGIN
 END;
 GO
 
---EXEC sys.sp_addextendedproperty @name=N'Description', @value=N'Auto-created to support a foreign key' , @level0type=N'SCHEMA',@level0name=N'Sales', @level1type=N'TABLE',@level1name=N'Orders', @level2type=N'INDEX',@level2name=N'FK_Sales_Orders_BackorderOrderID'
---GO
-
-

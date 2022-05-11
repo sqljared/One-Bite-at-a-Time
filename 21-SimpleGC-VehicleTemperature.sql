@@ -19,7 +19,7 @@ BEGIN TRANSACTION;
 INSERT INTO #VehicleTemperaturesGC
 SELECT TOP (@BatchSize)
 	vt.VehicleTemperatureID
-FROM Warehouse.VehicleTemperatures vt
+FROM Warehouse.VehicleTemperatures vt WITH(INDEX(IX_VehicleTemperatures_RecordedWhen))
 WHERE
 	vt.RecordedWhen < 
 		DATEADD(month, -50, GETUTCDATE());

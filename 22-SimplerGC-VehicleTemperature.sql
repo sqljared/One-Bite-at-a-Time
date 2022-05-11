@@ -12,7 +12,7 @@ BEGIN TRANSACTION;
 
 --620528 rows
 DELETE TOP (@BatchSize) vt
-FROM Warehouse.VehicleTemperatures vt --WITH(INDEX(IX_VehicleTemperatures_RecordedWhen))
+FROM Warehouse.VehicleTemperatures vt WITH(INDEX(IX_VehicleTemperatures_RecordedWhen))
 WHERE
 	vt.RecordedWhen < DATEADD(DAY, -180, GETUTCDATE());
 
